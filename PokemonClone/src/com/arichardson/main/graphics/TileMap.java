@@ -32,8 +32,8 @@ public class TileMap {
 	}
 
 	private void initializeSprites(SpriteSheet spriteSheet) {
-		int width = spriteSheet.getWidth()/spriteSheet.getSize();
-		int height = spriteSheet.getHeight()/spriteSheet.getSize();
+		int width = spriteSheet.getColumns();
+		int height = spriteSheet.getRows();
 		sprites = new Sprite[width*height];
 		
 		for(int x = 0; x < width; x++) {

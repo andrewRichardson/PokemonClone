@@ -14,6 +14,7 @@ public class Game {
 	int realWidth = 1280;
 	int realHeight = 720;
 	int width, height;
+	int tileSize = 16;
 	double scale = 4.0;
 	InputHandler input;
 	Graphics graphics;
@@ -30,8 +31,8 @@ public class Game {
 		init.addMouseListener(input);
 		init.addMouseWheelListener(input);
 		graphics = new Graphics(init, realWidth, realHeight, scale);
-		ssCave = new SpriteSheet("res/cave-ss.png", 8);
-		ssPlayer = new SpriteSheet("res/player-ss.png", 8);
+		ssCave = new SpriteSheet("res/firered-ss.png", tileSize, 0);
+		ssPlayer = new SpriteSheet("res/player-ss.png", tileSize, 0);
 		level1 = LevelLoader.retrieveLevel("res/level1.txt", init);
 		player = new Player(level1, input, ssPlayer, level1.getTileMap().getWidth()/2, level1.getTileMap().getHeight()/2, .1);
 		

@@ -10,16 +10,21 @@ public class SpriteSheet {
 
 	private int width;
 	private int height;
+	private int rows, columns;
 	private int size;
+	private int margin;
 	private BufferedImage image;
 	private String path;
 	
-	public SpriteSheet(String filePath, int size) {
+	public SpriteSheet(String filePath, int size, int margin) {
 		image = retrieveImage(filePath);
 		width = image.getWidth();
 		height = image.getHeight();
 		this.size = size;
 		path = filePath;
+		this.margin = margin;
+		columns = width / (size + margin);
+		rows = height / (size + margin);
 	}
 	
 	private BufferedImage retrieveImage(String filePath) {
@@ -43,6 +48,18 @@ public class SpriteSheet {
 	
 	public int getSize(){
 		return size;
+	}
+	
+	public int getMargin(){
+		return margin;
+	}
+	
+	public int getRows(){
+		return rows;
+	}
+	
+	public int getColumns() {
+		return columns;
 	}
 	
 	public BufferedImage getImage(){

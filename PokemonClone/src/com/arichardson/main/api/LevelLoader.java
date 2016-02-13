@@ -27,6 +27,8 @@ public class LevelLoader {
 		int width = 0;
 		int height = 0;
 		int tileSize = 0;
+		int margin = 0;
+		int bgTile = 0;
 		int[][] newLevel = null;
 		int[][] newLayer = null;
 		String spriteSheetPath = null;
@@ -40,23 +42,35 @@ public class LevelLoader {
 				width = scan.nextInt();
 				height = scan.nextInt();
 				tileSize = scan.nextInt();
+				margin = scan.nextInt();
+				bgTile = scan.nextInt();
 				spriteSheetPath = scan.next();
+				
+				System.out.println(width + " " + height + " " + tileSize + " " + margin + " " + bgTile + " " + spriteSheetPath);
 				
 				scan.close();
 				
 				newLevel = new int[width][height];
 				newLayer = new int[width][height];
 				
-				for(int y = 0; y < height; y++){
-					for(int x = 0; x < width; x++){
-						newLevel[x][y] = scanner.nextInt();
-					}
-				}
+				scanner.nextLine();
 				
 				for(int y = 0; y < height; y++){
+					Scanner s = new Scanner(scanner.nextLine());
 					for(int x = 0; x < width; x++){
-						newLayer[x][y] = scanner.nextInt();
+						newLevel[x][y] = s.nextInt();
 					}
+					s.close();
+				}
+				
+				scanner.nextLine();
+				
+				for(int y = 0; y < height; y++){
+					Scanner s = new Scanner(scanner.nextLine());
+					for(int x = 0; x < width; x++){
+						newLayer[x][y] = s.nextInt();
+					}
+					s.close();
 				}
 			}
 			
@@ -69,8 +83,8 @@ public class LevelLoader {
 		if(newLevel == null){
 			 return null;
 		}else{
-			SpriteSheet spriteSheet = new SpriteSheet(spriteSheetPath, tileSize);
-			level = new Level(width, height, spriteSheet, newLevel, newLayer);
+			SpriteSheet spriteSheet = new SpriteSheet(spriteSheetPath, tileSize, margin);
+			level = new Level(width, height, spriteSheet, bgTile, newLevel, newLayer);
 		}
 		return level;
 	}
@@ -92,7 +106,7 @@ public class LevelLoader {
 
             PrintWriter pw = new PrintWriter(fileWriter);
 
-           	pw.println(level.getTileMap().getWidth() + ", " + level.getTileMap().getHeight() + ", " + level.getSize() + ", " + level.getTileMap().getSpriteSheet().getPath() + " ");
+           	pw.println(level.getTileMap().getWidth() + ", " + level.getTileMap().getHeight() + ", " + level.getSize() + ", " + level.getTileMap().getSpriteSheet().getMargin() + ", " + level.getBGTile() + ", " + level.getTileMap().getSpriteSheet().getPath() + " ");
             
             for(int y = 0; y < level.getTileMap().getWidth()/level.getSize(); y++){
     			for(int x = 0; x < level.getTileMap().getHeight()/level.getSize(); x++){

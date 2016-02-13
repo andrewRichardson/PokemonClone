@@ -15,9 +15,10 @@ public class Sprite {
 	}
 	
 	private Image retrieveImage(SpriteSheet spriteSheet, int index){
-		int x = index%(spriteSheet.getImage().getWidth()/spriteSheet.getSize());
-		int y = (int)Math.floor(index/(spriteSheet.getWidth()/spriteSheet.getSize()));
-		return spriteSheet.getImage().getSubimage(x*spriteSheet.getSize(), y*spriteSheet.getSize(), spriteSheet.getSize(), spriteSheet.getSize());
+		int x = index%spriteSheet.getColumns();
+		int y = (int)Math.floor((double)index/spriteSheet.getColumns());
+		x = (index < x) ? index : x;
+		return spriteSheet.getImage().getSubimage(x*(spriteSheet.getSize()+spriteSheet.getMargin()), y*(spriteSheet.getSize()+spriteSheet.getMargin()), spriteSheet.getSize(), spriteSheet.getSize());
 	}
 	
 	public Image getImage(){

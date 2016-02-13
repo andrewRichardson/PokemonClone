@@ -96,7 +96,7 @@ public class Player {
 	}
 	
 	public void render(Graphics graphics){
-		graphics.drawSprite(160-8/2, 90-8/2, sprite);
+		graphics.drawSprite(graphics.getWidth()/2 - spriteSheet.getSize()/2, graphics.getHeight()/2 - spriteSheet.getSize()/2, sprite);
 	}
 	
 	public int getX(){

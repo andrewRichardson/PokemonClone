@@ -38,6 +38,14 @@ public class Graphics{
 		bi = new BufferedImage((int)(width/scale), (int)(height/scale), BufferedImage.TYPE_INT_ARGB);
 	}
 	
+	public int getWidth() {
+		return (int) (width / scale);
+	}
+	
+	public int getHeight() {
+		return (int) (height / scale);
+	}
+	
 	public boolean startRender(){
 		bs = canvas.getBufferStrategy();
 		if (bs == null) {
@@ -75,7 +83,6 @@ public class Graphics{
 		
 
 		g.dispose();
-		System.out.println(bi.getWidth() + " " + bi.getHeight());
 		g2d.drawImage(bi, 0, 0, width, height, null);
 		g2d.setColor(Color.WHITE);
 		g2d.setFont(new Font("HELVETICA", Font.BOLD, fontSize));

@@ -5,13 +5,15 @@ import com.arichardson.main.api.Graphics;
 public class Level {
 
 	private TileMap tileMap;
-	private int width, height, size, offsetX, offsetY;
+	private int width, height, size, offsetX, offsetY, bgTile;
 
-	public Level(int width, int height, SpriteSheet spriteSheet, int[][] tileData, int[][] tileLayerData) {
+	public Level(int width, int height, SpriteSheet spriteSheet, int bgTile, int[][] tileData, int[][] tileLayerData) {
 		this.width = width;
 		this.height = height;
 		size = spriteSheet.getSize();
 		tileMap = new TileMap(width, height, spriteSheet, tileData, tileLayerData);
+		this.bgTile = bgTile;
+		System.out.println(bgTile);
 	}
 	
 	public void updatePlayerPosition(int x, int y){
@@ -22,8 +24,9 @@ public class Level {
 	public void drawTileMapBottom(Graphics graphics) {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
+				graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[bgTile]);
 				if(tileMap.tileData[i][j] == 0)
-					graphics.drawSprite(i*size-offsetX+160-size/2, j*size-offsetY+90-size/2, tileMap.sprites[tileMap.tiles[i][j]]);
+					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[tileMap.tiles[i][j]]);
 			}
 		}
 	}
@@ -32,7 +35,7 @@ public class Level {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				if(tileMap.tileData[i][j] > 0)
-					graphics.drawSprite(i*size-offsetX+160-size/2, j*size-offsetY+90-size/2, tileMap.sprites[tileMap.tiles[i][j]]);
+					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[tileMap.tiles[i][j]]);
 			}
 		}
 	}
@@ -43,5 +46,9 @@ public class Level {
 	
 	public TileMap getTileMap(){
 		return tileMap;
+	}
+	
+	public int getBGTile() {
+		return bgTile;
 	}
 }
