@@ -13,7 +13,6 @@ public class Level {
 		size = spriteSheet.getSize();
 		tileMap = new TileMap(width, height, spriteSheet, tileData, tileLayerData);
 		this.bgTile = bgTile;
-		System.out.println(bgTile);
 	}
 	
 	public void updatePlayerPosition(int x, int y){
@@ -24,8 +23,9 @@ public class Level {
 	public void drawTileMapBottom(Graphics graphics) {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[bgTile]);
-				if(tileMap.tileData[i][j] == 0)
+				if(bgTile != -1)
+					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[bgTile]);
+				if(tileMap.tileData[i][j] <= 2 && tileMap.tileData[i][j] != -1)
 					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[tileMap.tiles[i][j]]);
 			}
 		}
@@ -34,7 +34,7 @@ public class Level {
 	public void drawTileMapTop(Graphics graphics) {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if(tileMap.tileData[i][j] > 0)
+				if(tileMap.tileData[i][j] > 1)
 					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[tileMap.tiles[i][j]]);
 			}
 		}

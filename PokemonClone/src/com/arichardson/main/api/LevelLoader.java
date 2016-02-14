@@ -46,8 +46,6 @@ public class LevelLoader {
 				bgTile = scan.nextInt();
 				spriteSheetPath = scan.next();
 				
-				System.out.println(width + " " + height + " " + tileSize + " " + margin + " " + bgTile + " " + spriteSheetPath);
-				
 				scan.close();
 				
 				newLevel = new int[width][height];
