@@ -54,9 +54,6 @@ public class Graphics{
 		}
 
 		g2d = (Graphics2D) bs.getDrawGraphics();
-
-		g2d.setColor(Color.BLACK);
-		g2d.fillRect(0, 0, width, height);
 		
 		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			    
@@ -80,7 +77,6 @@ public class Graphics{
 		int fontSize = width / 16;
 		g.setFont(new Font("HELVETICA", Font.BOLD, fontSize));
 		g.setColor(Color.WHITE);
-		
 
 		g.dispose();
 		g2d.drawImage(bi, 0, 0, width, height, null);

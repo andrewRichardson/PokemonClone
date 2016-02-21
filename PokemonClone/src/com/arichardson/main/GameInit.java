@@ -2,6 +2,8 @@ package com.arichardson.main;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
@@ -26,6 +28,7 @@ public class GameInit extends Canvas implements Runnable, MouseMotionListener {
 	@SuppressWarnings("unused")
 	private static InputHandler input;
 	private static String title;
+	private static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 	
 	public boolean render;
 
@@ -41,15 +44,15 @@ public class GameInit extends Canvas implements Runnable, MouseMotionListener {
 
 	public void main() {
 		System.setProperty("sun.java2d.opengl", "true");
-		
-		frame.setResizable(false);
+		device.setFullScreenWindow(frame);
+		//frame.setResizable(false);
 		frame.add(this);
 		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.toFront();
-		frame.setState(JFrame.NORMAL);
-		frame.requestFocus();
+		//frame.setLocationRelativeTo(null);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.toFront();
+		//frame.setState(JFrame.NORMAL);
+		//frame.requestFocus();
 
 		frame.setVisible(true);
 		start();

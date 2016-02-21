@@ -18,7 +18,7 @@ public class Player {
 	private int tileSize = 0;
 	private int x, y, nextX, nextY, currentX, currentY;
 	private int movementTimer = 0;
-	private final int MOVEMENT_TIMER_MAX = 400;
+	private final int MOVEMENT_TIMER_MAX = 100;
 	private double progress, speed;
 	private boolean isMovingVertical = false;
 	private boolean isMoving = false;
