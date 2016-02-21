@@ -1,4 +1,4 @@
-package com.arichardson.main.api;
+package com.arichardson.main.util;
 
 import java.awt.AlphaComposite;
 import java.awt.Canvas;

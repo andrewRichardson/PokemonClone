@@ -1,11 +1,11 @@
 package com.arichardson.main;
 
-import com.arichardson.main.api.Graphics;
-import com.arichardson.main.api.LevelLoader;
 import com.arichardson.main.entities.Player;
 import com.arichardson.main.graphics.Level;
 import com.arichardson.main.graphics.SpriteSheet;
 import com.arichardson.main.input.InputHandler;
+import com.arichardson.main.util.Graphics;
+import com.arichardson.main.util.LevelLoader;
 
 public class Game {
 
@@ -19,7 +19,7 @@ public class Game {
 	InputHandler input;
 	Graphics graphics;
 	Level level1;
-	SpriteSheet ssCave, ssPlayer;
+	SpriteSheet ssLevel, ssPlayer;
 	Player player;
 	
 	public Game(GameInit gameInit) {
@@ -31,10 +31,10 @@ public class Game {
 		init.addMouseListener(input);
 		init.addMouseWheelListener(input);
 		graphics = new Graphics(init, realWidth, realHeight, scale);
-		ssCave = new SpriteSheet("res/firered-ss.png", tileSize, 0);
+		ssLevel = new SpriteSheet("res/firered-ss.png", tileSize, 0);
 		ssPlayer = new SpriteSheet("res/sprites-firered-ss.png", 20, 0);
-		level1 = LevelLoader.retrieveLevel("res/startinglevel.txt", init);
-		player = new Player(level1, input, ssPlayer, 48, tileSize, level1.getTileMap().getWidth()/2, level1.getTileMap().getHeight()/2, .1);
+		level1 = LevelLoader.retrieveLevel("res/a.txt");
+		player = new Player(level1, input, ssPlayer, 0, tileSize, level1.getTileMap().getWidth()/2, level1.getTileMap().getHeight()/2, .1);
 		
 		render();
 	}
@@ -46,13 +46,13 @@ public class Game {
 		Game game = new Game(init);
 	}
 	
-	public void update(){
+	public void update(double deltaTime){
 		mouseX = init.getMouseX();
 		mouseY = init.getMouseY();
 		
 		input.update();
 		
-		player.update();
+		player.update((int)(deltaTime*1000));
 		level1.updatePlayerPosition(player.getX(), player.getY());
 	}
 	
@@ -66,7 +66,7 @@ public class Game {
 				if(!flag){
 					if(init.ups > updates){
 						updates++;
-						update();
+						update(init.deltaTime);
 					}
 					if(init.ups < updates){
 						updates = 0;

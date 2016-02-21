@@ -18,6 +18,7 @@ public class GameInit extends Canvas implements Runnable, MouseMotionListener {
 	private int fps = 0;
 	private int mouseX;
 	private int mouseY;
+	public double deltaTime = 0;
 	private boolean running = false;
 	private boolean showFPS = false;
 	public Thread thread;
@@ -81,6 +82,7 @@ public class GameInit extends Canvas implements Runnable, MouseMotionListener {
 		while (running) {
 			newTime = System.nanoTime();
 			delta += (double) (newTime - oldTime) / ns;
+			deltaTime = delta;
 			oldTime = newTime;
 			if (delta >= 1) {
 				delta--;

@@ -1,6 +1,6 @@
 package com.arichardson.main.graphics;
 
-import com.arichardson.main.api.Graphics;
+import com.arichardson.main.util.Graphics;
 
 public class Level {
 
@@ -26,7 +26,7 @@ public class Level {
 				if(bgTile != -1)
 					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[bgTile]);
 				if(tileMap.tileData[i][j] <= 2 && tileMap.tileData[i][j] != -1)
-					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[tileMap.tiles[i][j]]);
+					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[tileMap.tiles[i][j]!=-1?tileMap.tiles[i][j]:0]);
 			}
 		}
 	}
@@ -35,7 +35,7 @@ public class Level {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				if(tileMap.tileData[i][j] > 1)
-					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[tileMap.tiles[i][j]]);
+					graphics.drawSprite(i*size-offsetX+graphics.getWidth()/2-size/2, j*size-offsetY+graphics.getHeight()/2-size/2, tileMap.sprites[tileMap.tiles[i][j]!=-1?tileMap.tiles[i][j]:0]);
 			}
 		}
 	}

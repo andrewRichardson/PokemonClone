@@ -1,4 +1,4 @@
-package com.arichardson.main.api;
+package com.arichardson.main.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import com.arichardson.main.GameInit;
 import com.arichardson.main.graphics.Level;
 import com.arichardson.main.graphics.SpriteSheet;
 
@@ -23,7 +22,7 @@ public class LevelLoader {
 	 * @return      Level
 	 * @see         Level
 	 */
-	public static Level retrieveLevel(String levelPath, GameInit init){
+	public static Level retrieveLevel(String levelPath){
 		int width = 0;
 		int height = 0;
 		int tileSize = 0;
